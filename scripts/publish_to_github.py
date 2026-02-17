@@ -88,6 +88,11 @@ def main() -> None:
     )
     if has_staged:
         run(["git", "commit", "-m", "Initial commit"], cwd=project_dir)
+    else:
+        run(["git", "commit", "-m", "Update"], cwd=project_dir)
+        run(["git", "push"], cwd=project_dir)
+        print(f"OK: изменено в {full_repo}")
+        
 
     if not ok([gh, "repo", "view", full_repo], cwd=project_dir):
         run(
