@@ -88,9 +88,9 @@ def main() -> None:
     )
     if has_staged:
         run(["git", "commit", "-m", "Initial commit"], cwd=project_dir)
-    else:
-        
+    else:        
         message = input("Введите сообщение коммита: ")
+        run(["git", "add", "."], cwd=project_dir)
         if message:
             run(["git", "commit", "-m", message], cwd=project_dir)
         else:
