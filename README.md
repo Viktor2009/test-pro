@@ -4,15 +4,23 @@ Python проект.
 
 ## Установка
 
-1. Создайте виртуальное окружение:
+1. Создайте виртуальное окружение (имя без точки — `venv` или со скрытой папкой — `.venv`):
 ```bash
 python -m venv venv
 ```
+или
+```bash
+python -m venv .venv
+```
 
 2. Активируйте виртуальное окружение:
-- Windows:
+- Windows (`venv`):
 ```bash
 venv\Scripts\activate
+```
+- Windows (`.venv`):
+```bash
+.venv\Scripts\Activate.ps1
 ```
 - Linux/Mac:
 ```bash
@@ -33,14 +41,14 @@ pip install -r requirements-dev.txt
 
 ```
 .
-├── src/              # Исходный код проекта
-│   └── test_pro/     # Основной пакет
-├── tests/            # Тесты
-├── docs/             # Документация (опционально)
-├── requirements.txt  # Зависимости проекта
+├── src/                  # Исходный код проекта
+│   └── test_pro/         # Основной пакет
+├── tests/                # Тесты
+├── scripts/              # Вспомогательные скрипты (например, publish_to_github.py)
+├── requirements.txt      # Зависимости проекта
 ├── requirements-dev.txt  # Зависимости для разработки
-├── pyproject.toml    # Конфигурация проекта
-└── README.md         # Этот файл
+├── pyproject.toml        # Конфигурация проекта
+└── README.md             # Этот файл
 ```
 
 ## Разработка
@@ -55,8 +63,7 @@ pytest
 # Форматирование
 black src tests
 
-# Линтинг
-flake8 src tests
+# Линтинг (достаточно ruff; flake8 опционален)
 ruff check src tests
 
 # Проверка типов

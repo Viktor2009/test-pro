@@ -10,10 +10,15 @@ def get_gh_path() -> str:
     """Путь к gh: на Windows — поиск в стандартных путях, если нет в PATH."""
     if sys.platform != "win32":
         return "gh"
+    program_files = os.environ.get("ProgramFiles", r"C:\Program Files")
+    program_files_x86 = os.environ.get(
+        "ProgramFiles(x86)", r"C:\Program Files (x86)"
+    )
+    localappdata = os.environ.get("LOCALAPPDATA", "")
     candidates = [
-        Path(os.environ.get("ProgramFiles", r"C:\Program Files")) / "GitHub CLI" / "gh.exe",
-        Path(os.environ.get("ProgramFiles(x86)", r"C:\Program Files (x86)")) / "GitHub CLI" / "gh.exe",
-        Path(os.environ.get("LOCALAPPDATA", "")) / "Programs" / "GitHub CLI" / "gh.exe",
+        Path(program_files) / "GitHub CLI" / "gh.exe",
+        Path(program_files_x86) / "GitHub CLI" / "gh.exe",
+        Path(localappdata) / "Programs" / "GitHub CLI" / "gh.exe",
     ]
     for p in candidates:
         if p and p.exists():
@@ -43,7 +48,9 @@ def main() -> None:
     gh = get_gh_path()
 
     if not ok([gh, "auth", "status"], cwd=project_dir):
-        raise SystemExit("Нет авторизации gh. Выполните: gh auth login -p https -w")
+        raise SystemExit(
+            "Нет авторизации gh. Выполните: gh auth login -p https -w"
+        )
 
     owner = run([gh, "api", "user", "-q", ".login"], cwd=project_dir)
     full_repo = f"{owner}/{repo_name}"
@@ -54,7 +61,9 @@ def main() -> None:
     run(["git", "branch", "-M", "main"], cwd=project_dir)
     run(["git", "add", "."], cwd=project_dir)
 
-    has_staged = not ok(["git", "diff", "--cached", "--quiet"], cwd=project_dir)
+    has_staged = not ok(
+        ["git", "diff", "--cached", "--quiet"], cwd=project_dir
+    )
     if has_staged:
         run(["git", "commit", "-m", "Initial commit"], cwd=project_dir)
 
