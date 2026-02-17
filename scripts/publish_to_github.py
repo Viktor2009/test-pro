@@ -92,10 +92,12 @@ def main() -> None:
         message = input("Введите сообщение коммита: ")
         run(["git", "add", "."], cwd=project_dir)
         if message:
+            run(["git", "add", "."], cwd=project_dir)
             run(["git", "commit", "-m", message], cwd=project_dir)
         else:
             print("Сообщение коммита не введено. Используется значение по умолчанию.")
             message = "Update"
+            run(["git", "add", "."], cwd=project_dir)
             run(["git", "commit", "-m", message], cwd=project_dir)
             print(f"OK: изменено в {full_repo} с сообщением: {message}")
         run(["git", "push"], cwd=project_dir)
