@@ -89,11 +89,17 @@ def main() -> None:
     if has_staged:
         run(["git", "commit", "-m", "Initial commit"], cwd=project_dir)
     else:
-        run(["git", "commit", "-m", "Update"], cwd=project_dir)
-        run(["git", "push"], cwd=project_dir)
-        print(f"OK: изменено в {full_repo}")
         
-
+        message = input("Введите сообщение коммита: ")
+        if message:
+            run(["git", "commit", "-m", message], cwd=project_dir)
+        else:
+            print("Сообщение коммита не введено. Используется значение по умолчанию.")
+            message = "Update"
+            run(["git", "commit", "-m", message], cwd=project_dir)
+            print(f"OK: изменено в {full_repo} с сообщением: {message}")
+        run(["git", "push"], cwd=project_dir)
+        
     if not ok([gh, "repo", "view", full_repo], cwd=project_dir):
         run(
             [
