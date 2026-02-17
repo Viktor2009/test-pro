@@ -26,6 +26,9 @@ def get_gh_path() -> str:
     return "gh"
 
 
+_COMMON_ENCODING = {"encoding": "utf-8", "errors": "replace"}
+
+
 def run(cmd: list[str], cwd: Path) -> str:
     p = subprocess.run(
         cmd,
@@ -33,12 +36,19 @@ def run(cmd: list[str], cwd: Path) -> str:
         check=True,
         text=True,
         capture_output=True,
+        **_COMMON_ENCODING,
     )
     return (p.stdout or "").strip()
 
 
 def ok(cmd: list[str], cwd: Path) -> bool:
-    p = subprocess.run(cmd, cwd=cwd, text=True, capture_output=True)
+    p = subprocess.run(
+        cmd,
+        cwd=cwd,
+        text=True,
+        capture_output=True,
+        **_COMMON_ENCODING,
+    )
     return p.returncode == 0
 
 
