@@ -4,27 +4,19 @@ Python проект.
 
 ## Установка параметров
 
-1. Создайте виртуальное окружение (имя без точки — `venv` или со скрытой папкой — `.venv`):
-```bash
-python -m venv venv
-```
-или
+1. Создайте виртуальное окружение в папке `.venv`:
 ```bash
 python -m venv .venv
 ```
 
 2. Активируйте виртуальное окружение:
-- Windows (`venv`):
-```bash
-venv\Scripts\activate
-```
-- Windows (`.venv`):
+- Windows:
 ```bash
 .venv\Scripts\Activate.ps1
 ```
 - Linux/Mac:
 ```bash
-source venv/bin/activate
+source .venv/bin/activate
 ```
 
 3. Установите зависимости:
@@ -49,6 +41,15 @@ pip install -r requirements-dev.txt
 ├── requirements-dev.txt  # Зависимости для разработки
 ├── pyproject.toml        # Конфигурация проекта
 └── README.md             # Этот файл
+```
+
+## Обновление на GitHub
+
+При записи изменений на GitHub «комментариями» к обновлениям служат **сообщения коммитов** (commit message): каждое изменение сохраняется с текстом коммита и отображается в истории репозитория на GitHub. Для обновления после правок выполните:
+```bash
+git add .
+git commit -m "Краткое описание изменений"
+git push
 ```
 
 ## Разработка

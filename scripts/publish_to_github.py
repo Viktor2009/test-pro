@@ -1,3 +1,11 @@
+"""Публикация проекта на GitHub: создание репозитория и первый push.
+
+При обновлении данных на GitHub комментариями служат сообщения коммитов
+(commit message): каждое изменение записывается с текстом коммита и видно
+в истории репозитория на GitHub. Скрипт при первом запуске создаёт коммит
+«Initial commit»; при дальнейших обновлениях делайте commit вручную с
+нужным сообщением и затем git push.
+"""
 from __future__ import annotations
 
 import os
@@ -7,7 +15,7 @@ from pathlib import Path
 
 
 def get_gh_path() -> str:
-    """Путь к gh: на Windows — поиск в стандартных путях, если нет в PATH."""
+    """Возвращает путь к исполняемому файлу gh (на Windows ищет в типичных путях)."""
     if sys.platform != "win32":
         return "gh"
     program_files = os.environ.get("ProgramFiles", r"C:\Program Files")
@@ -26,10 +34,12 @@ def get_gh_path() -> str:
     return "gh"
 
 
+# Кодировка вывода дочерних процессов (gh/git), чтобы избежать ошибок на Windows.
 _COMMON_ENCODING = {"encoding": "utf-8", "errors": "replace"}
 
 
 def run(cmd: list[str], cwd: Path) -> str:
+    """Выполняет команду, при ошибке прерывает работу. Возвращает stdout (без пробелов)."""
     p = subprocess.run(
         cmd,
         cwd=cwd,
@@ -42,6 +52,7 @@ def run(cmd: list[str], cwd: Path) -> str:
 
 
 def ok(cmd: list[str], cwd: Path) -> bool:
+    """Выполняет команду без вывода. Возвращает True, если код возврата 0."""
     p = subprocess.run(
         cmd,
         cwd=cwd,
@@ -53,6 +64,7 @@ def ok(cmd: list[str], cwd: Path) -> bool:
 
 
 def main() -> None:
+    """Инициализирует git (если нужно), создаёт репозиторий на GitHub и пушит ветку main."""
     project_dir = Path(r"d:\Test_pro")
     repo_name = "test-pro"
     gh = get_gh_path()
