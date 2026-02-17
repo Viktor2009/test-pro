@@ -118,7 +118,7 @@ def main() -> None:
             cwd=project_dir,
         )
 
-    run(["git", "push", "-u", "origin", "main"], cwd=project_dir)
+    run(["git", "push", "-u", "origin", "02.02.2026"], cwd=project_dir)
     print(f"OK: опубликовано в {full_repo}")
 
 
