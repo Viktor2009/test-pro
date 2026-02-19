@@ -1,4 +1,4 @@
-# Запуск тестов (PowerShell)
+# Запуск  тестов (PowerShell)
 # Использование: .\scripts\run_tests.ps1
 
 Set-Location $PSScriptRoot\..
