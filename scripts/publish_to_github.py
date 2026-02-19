@@ -68,9 +68,12 @@ def main() -> None:
 
     Первый push — в ветку main. Последующие — в ветки с именем
     из текущей даты и времени (например 2025-02-19_14-30-00).
+
+    project_dir и repo_name задаются по текущему рабочему каталогу:
+    project_dir — каталог, из которого запущен скрипт, repo_name — его имя.
     """
-    project_dir = Path(r"d:\Test_pro")
-    repo_name = "test-pro1"
+    project_dir = Path.cwd()
+    repo_name = project_dir.name
     gh = get_gh_path()
 
     if not ok([gh, "auth", "status"], cwd=project_dir):
