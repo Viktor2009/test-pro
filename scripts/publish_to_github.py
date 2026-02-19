@@ -1,16 +1,16 @@
-"""Публикация проекта на GitHub:  Создание репозитория и первый push.
+"""Публикация проекта на GitHub: создание репозитория и push.
 
-При обновлении данных на GitHub комментариями служат сообщения коммитов
-(commit message): каждое изменение записывается с текстом коммита и видно
-в истории репозитория на GitHub. Скрипт при первом запуске создаёт коммит
-«Initial commit»; при дальнейших обновлениях делайте commit вручную с
-нужным сообщением и затем git push.
+При первом запуске изменения публикуются в ветку main. При последующих
+запусках создаётся ветка с именем из текущей даты и времени (например
+2025-02-19_14-30-00), и изменения пушатся в неё. Комментариями служат
+сообщения коммитов (commit message).
 """
 from __future__ import annotations
 
 import os
 import subprocess
 import sys
+from datetime import datetime
 from pathlib import Path
 
 
@@ -64,7 +64,11 @@ def ok(cmd: list[str], cwd: Path) -> bool:
 
 
 def main() -> None:
-    """Инициализирует git (если нужно), создаёт репозиторий на GitHub и пушит ветку main."""
+    """Инициализирует git (если нужно), создаёт репозиторий на GitHub.
+
+    Первый push — в ветку main. Последующие — в ветки с именем
+    из текущей даты и времени (например 2025-02-19_14-30-00).
+    """
     project_dir = Path(r"d:\Test_pro")
     repo_name = "test-pro"
     gh = get_gh_path()
@@ -76,6 +80,7 @@ def main() -> None:
 
     owner = run([gh, "api", "user", "-q", ".login"], cwd=project_dir)
     full_repo = f"{owner}/{repo_name}"
+    repo_exists = ok([gh, "repo", "view", full_repo], cwd=project_dir)
 
     if not (project_dir / ".git").exists():
         run(["git", "init"], cwd=project_dir)
@@ -86,23 +91,20 @@ def main() -> None:
     has_staged = not ok(
         ["git", "diff", "--cached", "--quiet"], cwd=project_dir
     )
-    if has_staged:
-        run(["git", "commit", "-m", "Initial commit"], cwd=project_dir)
-    else:        
-        message = input("Введите сообщение коммита: ")
-        run(["git", "add", "."], cwd=project_dir)
-        if message:
-            run(["git", "add", "."], cwd=project_dir)
-            run(["git", "commit", "-m", message], cwd=project_dir)
-        else:
-            print("Сообщение коммита не введено. Используется значение по умолчанию.")
+    if not has_staged:
+        print("Нет изменений для коммита.")
+        return
+
+    if not repo_exists:
+        message = "Initial commit"
+        run(["git", "commit", "-m", message], cwd=project_dir)
+    else:
+        message = input("Введите сообщение коммита: ").strip() or "Update"
+        if not message:
             message = "Update"
-            run(["git", "add", "."], cwd=project_dir)
-            run(["git", "commit", "-m", message], cwd=project_dir)
-            print(f"OK: изменено в {full_repo} с сообщением: {message}")
-        run(["git", "push"], cwd=project_dir)
-        
-    if not ok([gh, "repo", "view", full_repo], cwd=project_dir):
+        run(["git", "commit", "-m", message], cwd=project_dir)
+
+    if not repo_exists:
         run(
             [
                 gh,
@@ -117,9 +119,14 @@ def main() -> None:
             ],
             cwd=project_dir,
         )
-
-    run(["git", "push", "-u", "origin", "main"], cwd=project_dir)
-    print(f"OK: опубликовано в {full_repo}")
+        run(["git", "push", "-u", "origin", "main"], cwd=project_dir)
+        print(f"OK: первый push в ветку main — {full_repo}")
+    else:
+        branch_name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        run(["git", "checkout", "-b", branch_name], cwd=project_dir)
+        run(["git", "push", "-u", "origin", branch_name], cwd=project_dir)
+        run(["git", "checkout", "main"], cwd=project_dir)
+        print(f"OK: изменения в ветке {branch_name} — {full_repo}")
 
 
 if __name__ == "__main__":
