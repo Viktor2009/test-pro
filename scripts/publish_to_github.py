@@ -70,7 +70,7 @@ def main() -> None:
     из текущей даты и времени (например 2025-02-19_14-30-00).
     """
     project_dir = Path(r"d:\Test_pro")
-    repo_name = "test-pro"
+    repo_name = "test-pro1"
     gh = get_gh_path()
 
     if not ok([gh, "auth", "status"], cwd=project_dir):
@@ -86,25 +86,27 @@ def main() -> None:
         run(["git", "init"], cwd=project_dir)
 
     run(["git", "branch", "-M", "main"], cwd=project_dir)
-    run(["git", "add", "."], cwd=project_dir)
 
+    if repo_exists:
+        # Сначала создаём ветку с датой от main, коммит только в неё —
+        # иначе коммит остаётся на локальном main и он расходится с origin/main.
+        branch_name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        run(["git", "checkout", "-b", branch_name], cwd=project_dir)
+
+    run(["git", "add", "."], cwd=project_dir)
     has_staged = not ok(
         ["git", "diff", "--cached", "--quiet"], cwd=project_dir
     )
     if not has_staged:
+        if repo_exists:
+            run(["git", "checkout", "main"], cwd=project_dir)
+            run(["git", "branch", "-D", branch_name], cwd=project_dir)
         print("Нет изменений для коммита.")
         return
 
     if not repo_exists:
         message = "Initial commit"
         run(["git", "commit", "-m", message], cwd=project_dir)
-    else:
-        message = input("Введите сообщение коммита: ").strip() or "Update"
-        if not message:
-            message = "Update"
-        run(["git", "commit", "-m", message], cwd=project_dir)
-
-    if not repo_exists:
         run(
             [
                 gh,
@@ -122,8 +124,8 @@ def main() -> None:
         run(["git", "push", "-u", "origin", "main"], cwd=project_dir)
         print(f"OK: первый push в ветку main — {full_repo}")
     else:
-        branch_name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        run(["git", "checkout", "-b", branch_name], cwd=project_dir)
+        message = input("Введите сообщение коммита: ").strip() or "Update"
+        run(["git", "commit", "-m", message], cwd=project_dir)
         run(["git", "push", "-u", "origin", branch_name], cwd=project_dir)
         run(["git", "checkout", "main"], cwd=project_dir)
         print(f"OK: изменения в ветке {branch_name} — {full_repo}")
