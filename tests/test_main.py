@@ -1,8 +1,14 @@
-"""Тесты для основного модуля."""
+"""
+Тесты для основного модуля приложения.
+"""
 
-from test_pro.main import main
+import pytest
+
+from app.main import main
 
 
-def test_main() -> None:
-    """Тест функции main."""
-    main()  # проверяем, что выполняется без исключений
+def test_main_runs_without_error(capsys: pytest.CaptureFixture[str]) -> None:
+    """main() выполняется без исключений и выводит сообщение."""
+    main()
+    captured = capsys.readouterr()
+    assert "Привет" in captured.out or "готов" in captured.out
