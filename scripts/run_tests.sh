@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env  bash
 # Запуск тестов (Linux/macOS)
 # Использование: ./scripts/run_tests.sh
 

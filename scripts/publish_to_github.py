@@ -63,16 +63,38 @@ def ok(cmd: list[str], cwd: Path) -> bool:
     return p.returncode == 0
 
 
+def find_git_root(start: Path) -> Path | None:
+    """Ищет корень git-репозитория (каталог с .git), поднимаясь от start вверх."""
+    current = start.resolve()
+    while True:
+        if (current / ".git").exists():
+            return current
+        parent = current.parent
+        if parent == current:
+            return None
+        current = parent
+
+
 def main() -> None:
     """Инициализирует git (если нужно), создаёт репозиторий на GitHub.
 
     Первый push — в ветку main. Последующие — в ветки с именем
     из текущей даты и времени (например 2025-02-19_14-30-00).
 
-    project_dir и repo_name задаются по текущему рабочему каталогу:
-    project_dir — каталог, из которого запущен скрипт, repo_name — его имя.
+    Рабочим каталогом считается корень git-репозитория (где лежит .git).
+    Скрипт можно запускать из любой подпапки проекта — все команды
+    выполняются в корне репозитория, поэтому в коммит попадают все
+    изменения по проекту, а не только из текущей папки.
     """
-    project_dir = Path.cwd()
+    start_dir = Path.cwd()
+    project_dir = find_git_root(start_dir)
+    if project_dir is None:
+        project_dir = start_dir
+        if not (project_dir / ".git").exists():
+            run(["git", "init"], cwd=project_dir)
+    else:
+        if start_dir != project_dir:
+            print(f"Используется корень репозитория: {project_dir}")
     repo_name = project_dir.name
     gh = get_gh_path()
 
@@ -84,9 +106,6 @@ def main() -> None:
     owner = run([gh, "api", "user", "-q", ".login"], cwd=project_dir)
     full_repo = f"{owner}/{repo_name}"
     repo_exists = ok([gh, "repo", "view", full_repo], cwd=project_dir)
-
-    if not (project_dir / ".git").exists():
-        run(["git", "init"], cwd=project_dir)
 
     run(["git", "branch", "-M", "main"], cwd=project_dir)
 
