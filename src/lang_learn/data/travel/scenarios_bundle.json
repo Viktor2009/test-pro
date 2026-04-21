@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "scenarios": [
+    {
+      "slug": "airport",
+      "title": "Аэропорт",
+      "target_language": "en-US",
+      "lexicon": [
+        {"term": "boarding pass", "gloss": "посадочный талон"},
+        {"term": "gate", "gloss": "выход на посадку"},
+        {"term": "carry-on", "gloss": "ручная кладь"},
+        {"term": "delay", "gloss": "задержка"}
+      ],
+      "phrases": [
+        {"id": "air.1", "text": "I have a connecting flight.", "gloss": "У меня стыковочный рейс.", "survival": true},
+        {"id": "air.2", "text": "Where is gate B12?", "gloss": "Где выход B12?", "survival": true},
+        {"id": "air.3", "text": "Is this the line for security?", "gloss": "Это очередь на досмотр?", "survival": false},
+        {"id": "air.4", "text": "My luggage is missing.", "gloss": "Мой багаж не приехал.", "survival": true}
+      ],
+      "variations": [
+        {"level": 1, "title": "Спокойная регистрация", "coach_note": "Короткие вежливые фразы.", "clarifying_questions": []},
+        {"level": 2, "title": "Смена выхода", "coach_note": "Сотрудник сообщает новый gate.", "clarifying_questions": ["Do you have any liquids in your bag?"]},
+        {"level": 3, "title": "Задержка рейса", "coach_note": "Шум, спешка, уточнения.", "clarifying_questions": ["Can you spell your last name?", "Do you have a visa for your next stop?"]}
+      ]
+    },
+    {
+      "slug": "hotel",
+      "title": "Отель",
+      "target_language": "en-US",
+      "lexicon": [
+        {"term": "reservation", "gloss": "бронь"},
+        {"term": "key card", "gloss": "ключ-карта"},
+        {"term": "checkout", "gloss": "выезд"},
+        {"term": "wifi password", "gloss": "пароль Wi‑Fi"}
+      ],
+      "phrases": [
+        {"id": "hot.1", "text": "I have a reservation under Ivanov.", "gloss": "У меня бронь на Иванова.", "survival": true},
+        {"id": "hot.2", "text": "What time is breakfast?", "gloss": "Во сколько завтрак?", "survival": false},
+        {"id": "hot.3", "text": "Could I have a quiet room, please?", "gloss": "Тихий номер, пожалуйста.", "survival": true}
+      ],
+      "variations": [
+        {"level": 1, "title": "Заселение", "coach_note": "Стандартный диалог.", "clarifying_questions": []},
+        {"level": 2, "title": "Номер не готов", "coach_note": "Предлагают подождать.", "clarifying_questions": ["Would you like to leave your bags here?"]},
+        {"level": 3, "title": "Проблема с оплатой", "coach_note": "Карта не проходит.", "clarifying_questions": ["Can you try another card?", "Do you have a deposit block on your account?"]}
+      ]
+    },
+    {
+      "slug": "restaurant",
+      "title": "Ресторан",
+      "target_language": "en-US",
+      "lexicon": [
+        {"term": "menu", "gloss": "меню"},
+        {"term": "bill", "gloss": "счёт"},
+        {"term": "allergy", "gloss": "аллергия"},
+        {"term": "tap water", "gloss": "водопроводная вода"}
+      ],
+      "phrases": [
+        {"id": "res.1", "text": "A table for two, please.", "gloss": "Стол на двоих.", "survival": true},
+        {"id": "res.2", "text": "I am allergic to nuts.", "gloss": "У меня аллергия на орехи.", "survival": true},
+        {"id": "res.3", "text": "Could we have the check, please?", "gloss": "Счёт, пожалуйста.", "survival": true}
+      ],
+      "variations": [
+        {"level": 1, "title": "Заказ блюд", "coach_note": "Простой заказ.", "clarifying_questions": []},
+        {"level": 2, "title": "Нет блюда в меню", "coach_note": "Предлагают замену.", "clarifying_questions": ["Is pork okay instead of chicken?"]},
+        {"level": 3, "title": "Ошибка в счёте", "coach_note": "Вежливо уточнить.", "clarifying_questions": ["Did you charge for two drinks?"]}
+      ]
+    },
+    {
+      "slug": "shop",
+      "title": "Магазин",
+      "target_language": "en-US",
+      "lexicon": [
+        {"term": "receipt", "gloss": "чек"},
+        {"term": "cash", "gloss": "наличные"},
+        {"term": "return policy", "gloss": "условия возврата"},
+        {"term": "size", "gloss": "размер"}
+      ],
+      "phrases": [
+        {"id": "sho.1", "text": "How much is this?", "gloss": "Сколько это стоит?", "survival": true},
+        {"id": "sho.2", "text": "Can I pay by card?", "gloss": "Можно картой?", "survival": true},
+        {"id": "sho.3", "text": "I would like a bag, please.", "gloss": "Пакет, пожалуйста.", "survival": false}
+      ],
+      "variations": [
+        {"level": 1, "title": "Покупка одного товара", "coach_note": "Цена и оплата.", "clarifying_questions": []},
+        {"level": 2, "title": "Обмен размера", "coach_note": "Вежливый запрос.", "clarifying_questions": ["Do you have the receipt with you?"]},
+        {"level": 3, "title": "Очередь и скидка", "coach_note": "Шум в зале.", "clarifying_questions": ["Do you have our loyalty app?"]}
+      ]
+    },
+    {
+      "slug": "pharmacy",
+      "title": "Аптека / клиника",
+      "target_language": "en-US",
+      "lexicon": [
+        {"term": "prescription", "gloss": "рецепт"},
+        {"term": "pain relief", "gloss": "обезболивающее"},
+        {"term": "dosage", "gloss": "дозировка"},
+        {"term": "side effects", "gloss": "побочные эффекты"}
+      ],
+      "phrases": [
+        {"id": "pha.1", "text": "I need something for a headache.", "gloss": "Нужно от головной боли.", "survival": true},
+        {"id": "pha.2", "text": "I have a prescription here.", "gloss": "У меня рецепт.", "survival": true},
+        {"id": "pha.3", "text": "Is there a doctor nearby?", "gloss": "Есть ли рядом врач?", "survival": true}
+      ],
+      "variations": [
+        {"level": 1, "title": "Покупка без рецепта", "coach_note": "Простой запрос.", "clarifying_questions": []},
+        {"level": 2, "title": "Уточнение аллергии", "coach_note": "Фармацевт задаёт вопросы.", "clarifying_questions": ["Any allergies to penicillin?"]},
+        {"level": 3, "title": "Срочно ночью", "coach_note": "Минимальный запас слов.", "clarifying_questions": ["Is this for you or a child?", "How long have you had the fever?"]}
+      ]
+    },
+    {
+      "slug": "emergency",
+      "title": "Полиция / экстренные случаи",
+      "target_language": "en-US",
+      "lexicon": [
+        {"term": "help", "gloss": "помощь"},
+        {"term": "police", "gloss": "полиция"},
+        {"term": "lost passport", "gloss": "потерянный паспорт"},
+        {"term": "emergency", "gloss": "чрезвычайная ситуация"}
+      ],
+      "phrases": [
+        {"id": "eme.1", "text": "I need help, please.", "gloss": "Нужна помощь.", "survival": true},
+        {"id": "eme.2", "text": "I lost my passport.", "gloss": "Я потерял паспорт.", "survival": true},
+        {"id": "eme.3", "text": "Could you call the police?", "gloss": "Вызовите полицию.", "survival": true}
+      ],
+      "variations": [
+        {"level": 1, "title": "Потерял документ", "coach_note": "Спокойно объяснить.", "clarifying_questions": []},
+        {"level": 2, "title": "Кража", "coach_note": "Кратко описать что случилось.", "clarifying_questions": ["When did you last see your bag?"]},
+        {"level": 3, "title": "Высокий стресс", "coach_note": "Короткие фразы, чётко.", "clarifying_questions": ["Can anyone translate?", "Do you have a copy of your ID?"]}
+      ]
+    }
+  ]
+}

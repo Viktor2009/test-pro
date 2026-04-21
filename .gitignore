@@ -45,5 +45,7 @@ htmlcov/
 .cache/
 
 # Локальные настройки и секреты
+.env
+!.env.example
 .env.local
 *.local

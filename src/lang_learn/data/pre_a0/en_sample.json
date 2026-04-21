@@ -1,0 +1,191 @@
+{
+  "version": 1,
+  "language": "en-US",
+  "title": "English alphabet — lesson 1 (A–Z, clusters)",
+  "letters": [
+    {
+      "id": "en.a",
+      "grapheme": "A",
+      "ipa": "",
+      "example_word": "apple"
+    },
+    {
+      "id": "en.b",
+      "grapheme": "B",
+      "ipa": "",
+      "example_word": "book"
+    },
+    {
+      "id": "en.c",
+      "grapheme": "C",
+      "ipa": "",
+      "example_word": "cat"
+    },
+    {
+      "id": "en.d",
+      "grapheme": "D",
+      "ipa": "",
+      "example_word": "dog"
+    },
+    {
+      "id": "en.e",
+      "grapheme": "E",
+      "ipa": "",
+      "example_word": "egg"
+    },
+    {
+      "id": "en.f",
+      "grapheme": "F",
+      "ipa": "",
+      "example_word": "fish"
+    },
+    {
+      "id": "en.g",
+      "grapheme": "G",
+      "ipa": "",
+      "example_word": "girl"
+    },
+    {
+      "id": "en.h",
+      "grapheme": "H",
+      "ipa": "",
+      "example_word": "hat"
+    },
+    {
+      "id": "en.i",
+      "grapheme": "I",
+      "ipa": "",
+      "example_word": "ice"
+    },
+    {
+      "id": "en.j",
+      "grapheme": "J",
+      "ipa": "",
+      "example_word": "jam"
+    },
+    {
+      "id": "en.k",
+      "grapheme": "K",
+      "ipa": "",
+      "example_word": "key"
+    },
+    {
+      "id": "en.l",
+      "grapheme": "L",
+      "ipa": "",
+      "example_word": "lion"
+    },
+    {
+      "id": "en.m",
+      "grapheme": "M",
+      "ipa": "",
+      "example_word": "moon"
+    },
+    {
+      "id": "en.n",
+      "grapheme": "N",
+      "ipa": "",
+      "example_word": "name"
+    },
+    {
+      "id": "en.o",
+      "grapheme": "O",
+      "ipa": "",
+      "example_word": "orange"
+    },
+    {
+      "id": "en.p",
+      "grapheme": "P",
+      "ipa": "",
+      "example_word": "pen"
+    },
+    {
+      "id": "en.q",
+      "grapheme": "Q",
+      "ipa": "",
+      "example_word": "queen"
+    },
+    {
+      "id": "en.r",
+      "grapheme": "R",
+      "ipa": "",
+      "example_word": "red"
+    },
+    {
+      "id": "en.s",
+      "grapheme": "S",
+      "ipa": "",
+      "example_word": "sun"
+    },
+    {
+      "id": "en.t",
+      "grapheme": "T",
+      "ipa": "",
+      "example_word": "tree"
+    },
+    {
+      "id": "en.u",
+      "grapheme": "U",
+      "ipa": "",
+      "example_word": "umbrella"
+    },
+    {
+      "id": "en.v",
+      "grapheme": "V",
+      "ipa": "",
+      "example_word": "van"
+    },
+    {
+      "id": "en.w",
+      "grapheme": "W",
+      "ipa": "",
+      "example_word": "water"
+    },
+    {
+      "id": "en.x",
+      "grapheme": "X",
+      "ipa": "",
+      "example_word": "xray"
+    },
+    {
+      "id": "en.y",
+      "grapheme": "Y",
+      "ipa": "",
+      "example_word": "yellow"
+    },
+    {
+      "id": "en.z",
+      "grapheme": "Z",
+      "ipa": "",
+      "example_word": "zoo"
+    }
+  ],
+  "clusters": [
+    {
+      "id": "en.ch",
+      "grapheme": "ch",
+      "ipa": "",
+      "example_word": "chair"
+    },
+    {
+      "id": "en.sh",
+      "grapheme": "sh",
+      "ipa": "",
+      "example_word": "ship"
+    },
+    {
+      "id": "en.th",
+      "grapheme": "th",
+      "ipa": "",
+      "example_word": "think"
+    }
+  ],
+  "minimal_pairs": [
+    {
+      "id": "en.ship_sheep",
+      "word_a": "ship",
+      "word_b": "sheep",
+      "focus": "ɪ vs iː"
+    }
+  ]
+}

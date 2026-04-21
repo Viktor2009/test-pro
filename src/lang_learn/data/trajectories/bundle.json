@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "travel",
+      "title": "Путешествия",
+      "description": "Travel-ready сценарии и активный минимум.",
+      "scenario_slugs": [
+        "airport",
+        "hotel",
+        "restaurant",
+        "shop",
+        "pharmacy",
+        "emergency"
+      ],
+      "module_refs": ["travel", "dialog"]
+    },
+    {
+      "id": "business",
+      "title": "Деловое общение",
+      "description": "Отель, ресторан, магазин как базовые деловые контексты.",
+      "scenario_slugs": ["hotel", "restaurant", "shop"],
+      "module_refs": ["travel", "dialog"]
+    },
+    {
+      "id": "exam_prep",
+      "title": "Подготовка к экзамену",
+      "description": "Фокус на структурированном диалоге и лексике; сценарии — по мере наполнения контента.",
+      "scenario_slugs": [],
+      "module_refs": ["pre_a0", "dialog", "pronunciation"]
+    }
+  ]
+}
